@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Risco de Comércio Internacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="hero card">
+        <p class="eyebrow">OEFCI</p>
+        <h1>Calculadora de risco e pricing em comércio internacional</h1>
+        <p class="hero-copy">
+          Ferramenta pedagógica para simular como o rating do país, a volatilidade cambial,
+          o tipo de instrumento e as condições financeiras afetam o risco de uma operação.
+        </p>
+        <div class="hero-highlight">
+          <p><strong>Comparação A/B disponível:</strong> compare 2 países lado a lado em formato tabular, com variáveis distintas quando necessário.</p>
+          <a href="#compareSection" class="hero-cta">Ir para a comparação entre países</a>
+        </div>
+        <p class="disclaimer">
+          Uso académico. Os resultados são indicativos e não substituem a precificação bancária real.
+        </p>
+      </section>
+
+      <section class="grid">
+        <form class="card form-panel" id="calculator-form">
+          <div class="section-title">
+            <h2>Parâmetros</h2>
+            <p>Escolha as variáveis principais da operação.</p>
+          </div>
+
+          <div class="formula compare-block" id="compareSection">
+            <h3>Comparar cenários (A vs B)</h3>
+            <p>Comparação tabular entre País A e País B com variáveis distintas por opção.</p>
+            <p id="nextActionHint" class="next-action-hint">Tabela A/B ativa: assinale "Diferente?" apenas nas variáveis que quer separar entre A e B.</p>
+            <div class="advanced-editor" id="advancedEditor">
+              <p class="editor-caption">Ecrã dividido: ajuste A e B lado a lado e veja as alterações imediatamente na comparação.</p>
+              <div class="advanced-tools">
+                <div class="quick-copy-actions">
+                  <button type="button" id="copyAtoB" class="secondary">Copiar A para B</button>
+                  <button type="button" id="copyBtoA" class="secondary">Copiar B para A</button>
+                </div>
+              </div>
+              <p class="editor-caption">Tabela comparativa: ative "Diferente" apenas nas variáveis onde quer valores distintos entre A e B.</p>
+
+              <div class="compare-input-matrix" id="splitEditor">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Variável</th>
+                      <th>País A</th>
+                      <th>País B</th>
+                      <th>Diferente?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">País</th>
+                      <td><select id="advA_country"></select></td>
+                      <td><select id="advB_country"></select></td>
+                      <td><span class="diff-fixed">Sempre</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Montante (EUR)</th>
+                      <td><input id="advA_amount" type="number" min="1000" step="1000" value="100000" /></td>
+                      <td><input id="advB_amount" type="number" min="1000" step="1000" value="100000" /></td>
+                      <td><input id="diff_amount" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Prazo (dias)</th>
+                      <td><input id="advA_tenorDays" type="number" min="1" max="720" step="1" value="120" /></td>
+                      <td><input id="advB_tenorDays" type="number" min="1" max="720" step="1" value="120" /></td>
+                      <td><input id="diff_tenorDays" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Volatilidade moeda (%)</th>
+                      <td><input id="advA_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" /></td>
+                      <td><input id="advB_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" /></td>
+                      <td><input id="diff_fxVolatility" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Cobertura cambial (%)</th>
+                      <td><input id="advA_hedgeRatio" type="number" min="0" max="100" step="5" value="50" /></td>
+                      <td><input id="advB_hedgeRatio" type="number" min="0" max="100" step="5" value="50" /></td>
+                      <td><input id="diff_hedgeRatio" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Instrumento</th>
+                      <td><select id="advA_instrument"></select></td>
+                      <td><select id="advB_instrument"></select></td>
+                      <td><input id="diff_instrument" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Estratégia cambial</th>
+                      <td><select id="advA_fxInstrument"></select></td>
+                      <td><select id="advB_fxInstrument"></select></td>
+                      <td><input id="diff_fxInstrument" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Incoterm</th>
+                      <td><select id="advA_incoterm"></select></td>
+                      <td><select id="advB_incoterm"></select></td>
+                      <td><input id="diff_incoterm" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Pagamento</th>
+                      <td><select id="advA_paymentStructure"></select></td>
+                      <td><select id="advB_paymentStructure"></select></td>
+                      <td><input id="diff_paymentStructure" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Qualidade documental</th>
+                      <td><select id="advA_documentationQuality"></select></td>
+                      <td><select id="advB_documentationQuality"></select></td>
+                      <td><input id="diff_documentationQuality" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Comissão instrumento (bps)</th>
+                      <td><input id="advA_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" /></td>
+                      <td><input id="advB_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" /></td>
+                      <td><input id="diff_instrumentFeeBps" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Comissão cambial (bps)</th>
+                      <td><input id="advA_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" /></td>
+                      <td><input id="advB_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" /></td>
+                      <td><input id="diff_fxFeeBps" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Qualidade contraparte</th>
+                      <td><select id="advA_counterpartyStrength"></select></td>
+                      <td><select id="advB_counterpartyStrength"></select></td>
+                      <td><input id="diff_counterpartyStrength" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Mitigação adicional</th>
+                      <td><select id="advA_collateral"></select></td>
+                      <td><select id="advB_collateral"></select></td>
+                      <td><input id="diff_collateral" class="diff-toggle" type="checkbox" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="compare-actions">
+              <button type="button" id="copyComparison" class="secondary">Copiar comparação</button>
+              <button type="button" id="clearScenarios" class="secondary">Limpar comparação</button>
+            </div>
+            <div class="compare-grid">
+              <article class="compare-card" id="compareCardA">
+                <h4>Cenário A</h4>
+                <p id="scenarioAData">Ainda não guardado.</p>
+              </article>
+              <article class="compare-card" id="compareCardB">
+                <h4>Cenário B</h4>
+                <p id="scenarioBData">Ainda não guardado.</p>
+              </article>
+            </div>
+            <div class="compare-metrics" id="comparisonMetrics">
+              <div class="compare-row header">
+                <span>Métrica</span>
+                <span>A</span>
+                <span>B</span>
+                <span>Diferença (B-A)</span>
+              </div>
+              <div class="compare-row">
+                <span>Score de risco</span>
+                <span id="cmpScoreA">-</span>
+                <span id="cmpScoreB">-</span>
+                <span id="cmpScoreDelta">-</span>
+              </div>
+              <div class="compare-row">
+                <span>Spread (bps)</span>
+                <span id="cmpSpreadA">-</span>
+                <span id="cmpSpreadB">-</span>
+                <span id="cmpSpreadDelta">-</span>
+              </div>
+              <div class="compare-row">
+                <span>Custo no prazo</span>
+                <span id="cmpCostA">-</span>
+                <span id="cmpCostB">-</span>
+                <span id="cmpCostDelta">-</span>
+              </div>
+            </div>
+            <p id="comparisonSummary">Guarde os dois cenários para ver diferenças.</p>
+            <p id="comparisonStatus" class="comparison-status"></p>
+          </div>
+
+          <label>
+            País da contraparte
+            <select id="country" name="country"></select>
+            <small class="field-help" id="help-country"></small>
+          </label>
+
+          <div class="two-columns">
+            <label>
+              Montante da operação (EUR)
+              <input id="amount" name="amount" type="number" min="1000" step="1000" value="100000" />
+              <small class="field-help" id="help-amount"></small>
+            </label>
+            <label>
+              Prazo (dias)
+              <input id="tenorDays" name="tenorDays" type="number" min="1" max="720" step="1" value="120" />
+              <small class="field-help" id="help-tenorDays"></small>
+            </label>
+          </div>
+
+          <div class="two-columns">
+            <label>
+              Volatilidade anual da moeda (%)
+              <input id="fxVolatility" name="fxVolatility" type="number" min="0" max="80" step="0.1" value="11" />
+              <small class="field-help" id="help-fxVolatility"></small>
+            </label>
+            <label>
+              Cobertura cambial (%)
+              <input id="hedgeRatio" name="hedgeRatio" type="number" min="0" max="100" step="5" value="50" />
+              <small class="field-help" id="help-hedgeRatio"></small>
+            </label>
+          </div>
+
+          <div class="two-columns">
+            <label>
+              Incoterm
+              <select id="incoterm" name="incoterm">
+                <option value="exw">EXW</option>
+                <option value="fob">FOB</option>
+                <option value="cif">CIF</option>
+                <option value="dap">DAP</option>
+                <option value="ddp">DDP</option>
+              </select>
+              <small class="field-help" id="help-incoterm"></small>
+            </label>
+            <label>
+              Estrutura de pagamento
+              <select id="paymentStructure" name="paymentStructure">
+                <option value="advance">Adiantamento</option>
+                <option value="lc">Carta de crédito</option>
+                <option value="documentary-collection">Cobrança documentária</option>
+                <option value="open-account" selected>Conta aberta</option>
+              </select>
+              <small class="field-help" id="help-paymentStructure"></small>
+            </label>
+          </div>
+
+          <label>
+            Qualidade documental
+            <select id="documentationQuality" name="documentationQuality">
+              <option value="strong">Estrita</option>
+              <option value="standard" selected>Normal</option>
+              <option value="weak">Fraca</option>
+            </select>
+            <small class="field-help" id="help-documentationQuality"></small>
+          </label>
+
+          <div class="two-columns">
+            <label>
+              Instrumento principal
+              <select id="instrument" name="instrument">
+                <option value="bank-guarantee">Garantia bancária</option>
+                <option value="advance-payment">Adiantamento</option>
+                <option value="importer-financing">Financiamento pelo importador</option>
+                <option value="exporter-financing">Financiamento pelo exportador</option>
+                <option value="leasing">Leasing</option>
+                <option value="factoring">Factoring</option>
+                <option value="forfaiting">Forfaiting</option>
+              </select>
+              <small class="field-help" id="help-instrument"></small>
+            </label>
+            <label>
+              Estratégia cambial
+              <select id="fxInstrument" name="fxInstrument">
+                <option value="spot">Spot</option>
+                <option value="forward">Forward cambial</option>
+                <option value="options">Opções cambiais</option>
+                <option value="unhedged">Sem cobertura</option>
+              </select>
+              <small class="field-help" id="help-fxInstrument"></small>
+            </label>
+          </div>
+
+          <div class="two-columns">
+            <label>
+              Comissão do instrumento (bps)
+              <input id="instrumentFeeBps" name="instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" />
+              <small class="field-help" id="help-instrumentFeeBps"></small>
+            </label>
+            <label>
+              Comissão/taxa cambial (bps)
+              <input id="fxFeeBps" name="fxFeeBps" type="number" min="0" max="1000" step="1" value="20" />
+              <small class="field-help" id="help-fxFeeBps"></small>
+            </label>
+          </div>
+
+          <div class="two-columns">
+            <label>
+              Qualidade do comprador/importador
+              <select id="counterpartyStrength" name="counterpartyStrength">
+                <option value="strong">Forte</option>
+                <option value="average" selected>Média</option>
+                <option value="weak">Frágil</option>
+              </select>
+              <small class="field-help" id="help-counterpartyStrength"></small>
+            </label>
+            <label>
+              Mitigação adicional
+              <select id="collateral" name="collateral">
+                <option value="none">Sem garantias adicionais</option>
+                <option value="partial">Seguro/colateral parcial</option>
+                <option value="strong">Seguro/colateral forte</option>
+              </select>
+              <small class="field-help" id="help-collateral"></small>
+            </label>
+          </div>
+
+          <button type="submit">Calcular risco</button>
+        </form>
+
+        <section class="card output-panel">
+          <div class="section-title">
+            <h2>Resultado</h2>
+            <p>Leitura simplificada do risco e do custo esperado.</p>
+          </div>
+
+          <div class="metrics">
+            <article>
+              <span>Score de risco</span>
+              <strong id="riskScore">0</strong>
+              <small id="riskLabel">-</small>
+            </article>
+            <article>
+              <span>Spread anual estimado</span>
+              <strong id="annualSpread">0.00%</strong>
+              <small id="spreadBps">0 bps</small>
+            </article>
+            <article>
+              <span>Custo estimado no prazo</span>
+              <strong id="estimatedCost">EUR 0</strong>
+              <small id="costNote">Baseado no prazo escolhido.</small>
+            </article>
+          </div>
+
+          <div class="breakdown-block">
+            <h3>Como interpretar</h3>
+            <ul id="resultExplanations">
+              <li><strong>Score:</strong> <span id="scoreExplanation">-</span></li>
+              <li><strong>Spread:</strong> <span id="spreadExplanation">-</span></li>
+              <li><strong>Custo:</strong> <span id="costExplanation">-</span></li>
+            </ul>
+          </div>
+
+          <div class="breakdown-block">
+            <h3>Detalhe do score</h3>
+            <ul id="scoreBreakdown"></ul>
+          </div>
+
+          <div class="formula">
+            <h3>Lógica usada</h3>
+            <p>
+              Score = base do país + classe de risco + prazo + volatilidade cambial + instrumento
+              principal + estratégia cambial + estrutura de pagamento + incoterm + qualidade da
+              contraparte + qualidade documental - mitigações.
+            </p>
+            <p>
+              Pricing = spread base + ajuste de score + comissões do instrumento + comissões
+              cambiais + custo operacional/logístico.
+            </p>
+          </div>
+
+          <div class="formula">
+            <h3>Modelo modelizado</h3>
+            <pre id="modelizedModel">A calcular...</pre>
+          </div>
+
+          <div class="formula assumptions">
+            <h3>Pressupostos do modelo</h3>
+            <ul>
+              <li>Modelo linear e transparente para fins pedagógicos, sem calibração a mercado.</li>
+              <li>Ratings e classes de risco do país entram como proxy simplificada de risco soberano e transferibilidade.</li>
+              <li>Instrumentos, estruturas de pagamento e comissões contratadas são tratados como fatores que alteram o pricing e, em alguns casos, o risco de crédito.</li>
+              <li>Incoterms e qualidade documental capturam risco operacional e de execução, não apenas risco financeiro.</li>
+              <li>O spread final usa uma convenção anual de 360 dias e assume que o risco cresce de forma aproximadamente proporcional ao prazo.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./country-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
