@@ -342,6 +342,7 @@ button:hover {
 
 .compare-table td {
   padding: 0 6px;
+  vertical-align: middle;
 }
 
 .compare-table tbody tr:nth-child(odd) th,
@@ -357,6 +358,23 @@ button:hover {
   border-radius: 8px;
   border: 1px solid rgba(30, 42, 36, 0.14);
   background: #fff;
+}
+.compare-table input[type="number"] {
+  width: 100%;
+  height: 34px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(30, 42, 36, 0.14);
+  background: #fff;
+  box-sizing: border-box;
+}
+.compare-table .field-help {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  min-height: 16px;
+}
 }
 
 .compare-table .diff-toggle {

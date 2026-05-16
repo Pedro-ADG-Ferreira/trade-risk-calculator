@@ -1,3 +1,12 @@
+// Atualiza ajuda da contraparte na comparação A/B
+function updateAdvancedCounterpartyHelp() {
+  const valA = output.advA_counterpartyStrength.value;
+  const valB = output.advB_counterpartyStrength.value;
+  const helpA = document.getElementById("help-advA-counterpartyStrength");
+  const helpB = document.getElementById("help-advB-counterpartyStrength");
+  if (helpA) helpA.textContent = counterpartyHelp[valA] || "";
+  if (helpB) helpB.textContent = counterpartyHelp[valB] || "";
+}
 const form = document.querySelector("#calculator-form");
 const countrySelect = document.querySelector("#country");
 
@@ -304,6 +313,9 @@ function initializeAdvancedSplitEditor() {
     output[`advB_${id}`].value = form[id].value;
   });
 
+  // Atualiza ajuda da contraparte na inicialização
+  updateAdvancedCounterpartyHelp();
+
   ADVANCED_DISTINCT_KEYS.forEach((key) => {
     if (distinctToggles[key]) {
       distinctToggles[key].checked = false;
@@ -311,6 +323,7 @@ function initializeAdvancedSplitEditor() {
   });
 
   applyDistinctLocks();
+  updateAdvancedCounterpartyHelp();
 }
 
 const ADVANCED_FIELD_KEYS = [
