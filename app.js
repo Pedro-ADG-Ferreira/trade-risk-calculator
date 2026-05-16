@@ -322,21 +322,20 @@ function formatCurrency(value) {
 function populateCountries() {
   const countries = [...window.COUNTRY_DATA];
 
+
+  // Limpa selects antes de preencher
+  countrySelect.innerHTML = '';
+  output.advA_country.innerHTML = '';
+  output.advB_country.innerHTML = '';
+
   countries.forEach((entry) => {
     const option = document.createElement("option");
     option.value = entry.country;
     option.textContent = `${entry.country} (${entry.grade} | ${entry.risk})`;
-    countrySelect.append(option);
-
-    const advOptionA = document.createElement("option");
-    advOptionA.value = entry.country;
-    advOptionA.textContent = `${entry.country} (${entry.grade} | ${entry.risk})`;
-    output.advA_country.append(advOptionA);
-
-    const advOptionB = document.createElement("option");
-    advOptionB.value = entry.country;
-    advOptionB.textContent = `${entry.country} (${entry.grade} | ${entry.risk})`;
-    output.advB_country.append(advOptionB);
+    // Adiciona a todos os selects de país
+    countrySelect.append(option.cloneNode(true));
+    output.advA_country.append(option.cloneNode(true));
+    output.advB_country.append(option.cloneNode(true));
   });
 
   const portugalOption = countries.find((entry) => entry.country === "Portugal");
