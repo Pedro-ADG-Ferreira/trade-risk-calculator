@@ -453,9 +453,15 @@ function copyAdvancedValues(fromPrefix, toPrefix, { includeCountry = true } = {}
 }
 
 function updateDistinctFieldState(key) {
-  // Todos os campos B ficam sempre editáveis
+  // Todos os campos B ficam sempre editáveis, toggle serve apenas como indicador visual
   output[`advB_${key}`].disabled = false;
-  output[`advB_${key}`].classList.remove("field-locked");
+  if (distinctToggles[key]) {
+    if (distinctToggles[key].checked) {
+      output[`advB_${key}`].classList.remove("field-locked");
+    } else {
+      output[`advB_${key}`].classList.add("field-locked-indicator");
+    }
+  }
 }
 
 function applyDistinctLocks() {

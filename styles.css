@@ -1,3 +1,9 @@
+/* Indica visualmente que o campo B está igual ao A, mas não bloqueia a edição */
+.field-locked-indicator {
+  background: #f2eadc !important;
+  border: 1.5px dashed #b5b5b5 !important;
+  opacity: 1 !important;
+}
 :root {
   --bg: #f3efe5;
   --bg-accent: #e7dcc7;
