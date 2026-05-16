@@ -184,16 +184,16 @@ select,
 button {
   width: 100%;
   border: 1px solid rgba(30, 42, 36, 0.14);
-  border-radius: 12px;
+  border-radius: 10px;
   font: inherit;
 }
 
 input,
 select {
-  padding: 10px 12px;
+  padding: 6px 8px;
   background: var(--panel-strong);
   color: var(--ink);
-  min-height: 42px;
+  min-height: 34px;
 }
 
 input:focus,
