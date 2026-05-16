@@ -1,11 +1,89 @@
-// Atualiza ajuda da contraparte na comparação A/B
-function updateAdvancedCounterpartyHelp() {
-  const valA = output.advA_counterpartyStrength.value;
-  const valB = output.advB_counterpartyStrength.value;
-  const helpA = document.getElementById("help-advA-counterpartyStrength");
-  const helpB = document.getElementById("help-advB-counterpartyStrength");
-  if (helpA) helpA.textContent = counterpartyHelp[valA] || "";
-  if (helpB) helpB.textContent = counterpartyHelp[valB] || "";
+// Atualiza todas as mensagens de apoio (field-help) na comparação A/B a partir de País da contraparte
+function updateAdvancedFieldHelp() {
+  // Montante
+  const amountA = Number(output.advA_amount.value) || 0;
+  const amountB = Number(output.advB_amount.value) || 0;
+  const helpAmountA = document.getElementById("help-advA-amount");
+  const helpAmountB = document.getElementById("help-advB-amount");
+  if (helpAmountA) helpAmountA.textContent = amountA >= 250000 ? "Montantes maiores não mudam muito o score, mas aumentam o custo absoluto da operação." : "Montantes menores reduzem o custo absoluto, embora o spread percentual continue a depender do risco.";
+  if (helpAmountB) helpAmountB.textContent = amountB >= 250000 ? "Montantes maiores não mudam muito o score, mas aumentam o custo absoluto da operação." : "Montantes menores reduzem o custo absoluto, embora o spread percentual continue a depender do risco.";
+
+  // Prazo
+  const tenorA = Number(output.advA_tenorDays.value) || 0;
+  const tenorB = Number(output.advB_tenorDays.value) || 0;
+  const helpTenorA = document.getElementById("help-advA-tenorDays");
+  const helpTenorB = document.getElementById("help-advB-tenorDays");
+  if (helpTenorA) helpTenorA.textContent = tenorA >= 180 ? "Prazos longos elevam o risco e o pricing porque aumentam a janela para evento de crédito e volatilidade." : "Prazos curtos comprimem a exposição e normalmente geram pricing mais baixo.";
+  if (helpTenorB) helpTenorB.textContent = tenorB >= 180 ? "Prazos longos elevam o risco e o pricing porque aumentam a janela para evento de crédito e volatilidade." : "Prazos curtos comprimem a exposição e normalmente geram pricing mais baixo.";
+
+  // Volatilidade
+  const fxVolA = Number(output.advA_fxVolatility.value) || 0;
+  const fxVolB = Number(output.advB_fxVolatility.value) || 0;
+  const helpFxVolA = document.getElementById("help-advA-fxVolatility");
+  const helpFxVolB = document.getElementById("help-advB-fxVolatility");
+  if (helpFxVolA) helpFxVolA.textContent = fxVolA >= 15 ? "Volatilidade elevada aumenta a incerteza cambial e empurra o spread para cima." : "Volatilidade contida tende a estabilizar o custo cambial.";
+  if (helpFxVolB) helpFxVolB.textContent = fxVolB >= 15 ? "Volatilidade elevada aumenta a incerteza cambial e empurra o spread para cima." : "Volatilidade contida tende a estabilizar o custo cambial.";
+
+  // Cobertura cambial
+  const hedgeA = Number(output.advA_hedgeRatio.value) || 0;
+  const hedgeB = Number(output.advB_hedgeRatio.value) || 0;
+  const helpHedgeA = document.getElementById("help-advA-hedgeRatio");
+  const helpHedgeB = document.getElementById("help-advB-hedgeRatio");
+  if (helpHedgeA) helpHedgeA.textContent = hedgeA >= 70 ? "Maior cobertura reduz a componente cambial do risco e ajuda a baixar o spread." : hedgeA <= 20 ? "Cobertura reduzida deixa a operação mais exposta ao FX e tende a encarecer o pricing." : "Cobertura parcial mitiga parte do risco cambial sem eliminar o custo.";
+  if (helpHedgeB) helpHedgeB.textContent = hedgeB >= 70 ? "Maior cobertura reduz a componente cambial do risco e ajuda a baixar o spread." : hedgeB <= 20 ? "Cobertura reduzida deixa a operação mais exposta ao FX e tende a encarecer o pricing." : "Cobertura parcial mitiga parte do risco cambial sem eliminar o custo.";
+
+  // Incoterm
+  const helpIncotermA = document.getElementById("help-advA-incoterm");
+  const helpIncotermB = document.getElementById("help-advB-incoterm");
+  if (helpIncotermA) helpIncotermA.textContent = incotermHelp[output.advA_incoterm.value] || "";
+  if (helpIncotermB) helpIncotermB.textContent = incotermHelp[output.advB_incoterm.value] || "";
+
+  // Pagamento
+  const helpPaymentA = document.getElementById("help-advA-paymentStructure");
+  const helpPaymentB = document.getElementById("help-advB-paymentStructure");
+  if (helpPaymentA) helpPaymentA.textContent = paymentHelp[output.advA_paymentStructure.value] || "";
+  if (helpPaymentB) helpPaymentB.textContent = paymentHelp[output.advB_paymentStructure.value] || "";
+
+  // Documentação
+  const helpDocA = document.getElementById("help-advA-documentationQuality");
+  const helpDocB = document.getElementById("help-advB-documentationQuality");
+  if (helpDocA) helpDocA.textContent = documentationHelp[output.advA_documentationQuality.value] || "";
+  if (helpDocB) helpDocB.textContent = documentationHelp[output.advB_documentationQuality.value] || "";
+
+  // Instrumento
+  const helpInstrA = document.getElementById("help-advA-instrument");
+  const helpInstrB = document.getElementById("help-advB-instrument");
+  if (helpInstrA) helpInstrA.textContent = instrumentHelp[output.advA_instrument.value] || "";
+  if (helpInstrB) helpInstrB.textContent = instrumentHelp[output.advB_instrument.value] || "";
+
+  // Estratégia cambial
+  const helpFxInstrA = document.getElementById("help-advA-fxInstrument");
+  const helpFxInstrB = document.getElementById("help-advB-fxInstrument");
+  if (helpFxInstrA) helpFxInstrA.textContent = fxInstrumentHelp[output.advA_fxInstrument.value] || "";
+  if (helpFxInstrB) helpFxInstrB.textContent = fxInstrumentHelp[output.advB_fxInstrument.value] || "";
+
+  // Comissão instrumento
+  const feeA = Number(output.advA_instrumentFeeBps.value) || 0;
+  const feeB = Number(output.advB_instrumentFeeBps.value) || 0;
+  const helpFeeA = document.getElementById("help-advA-instrumentFeeBps");
+  const helpFeeB = document.getElementById("help-advB-instrumentFeeBps");
+  if (helpFeeA) helpFeeA.textContent = feeA > 0 ? `A comissão contratada do instrumento é de ${feeA} bps e entra directamente no pricing final.` : "Se não houver comissão contratada, não existe custo adicional do instrumento para além do próprio spread de risco.";
+  if (helpFeeB) helpFeeB.textContent = feeB > 0 ? `A comissão contratada do instrumento é de ${feeB} bps e entra directamente no pricing final.` : "Se não houver comissão contratada, não existe custo adicional do instrumento para além do próprio spread de risco.";
+
+  // Comissão cambial
+  const fxFeeA = Number(output.advA_fxFeeBps.value) || 0;
+  const fxFeeB = Number(output.advB_fxFeeBps.value) || 0;
+  const helpFxFeeA = document.getElementById("help-advA-fxFeeBps");
+  const helpFxFeeB = document.getElementById("help-advB-fxFeeBps");
+  if (helpFxFeeA) helpFxFeeA.textContent = fxFeeA > 0 ? `A comissão/taxa cambial contratada é de ${fxFeeA} bps e aumenta o custo total da cobertura ou conversão cambial.` : "Se não houver comissão cambial, não existe custo adicional dessa componente.";
+  if (helpFxFeeB) helpFxFeeB.textContent = fxFeeB > 0 ? `A comissão/taxa cambial contratada é de ${fxFeeB} bps e aumenta o custo total da cobertura ou conversão cambial.` : "Se não houver comissão cambial, não existe custo adicional dessa componente.";
+
+
+  // Mitigação
+  const helpCollA = document.getElementById("help-advA-collateral");
+  const helpCollB = document.getElementById("help-advB-collateral");
+  if (helpCollA) helpCollA.textContent = collateralHelp[output.advA_collateral.value] || "";
+  if (helpCollB) helpCollB.textContent = collateralHelp[output.advB_collateral.value] || "";
 }
 const form = document.querySelector("#calculator-form");
 const countrySelect = document.querySelector("#country");
@@ -313,6 +391,9 @@ function initializeAdvancedSplitEditor() {
     output[`advB_${id}`].value = form[id].value;
   });
 
+  // Atualiza todas as mensagens de apoio na inicialização
+  updateAdvancedFieldHelp();
+
   // Atualiza ajuda da contraparte na inicialização
   updateAdvancedCounterpartyHelp();
 
@@ -320,10 +401,15 @@ function initializeAdvancedSplitEditor() {
     if (distinctToggles[key]) {
       distinctToggles[key].checked = false;
     }
+    // Listeners para atualizar mensagens de apoio
+    const advA = output[`advA_${key}`];
+    const advB = output[`advB_${key}`];
+    if (advA) advA.addEventListener("input", updateAdvancedFieldHelp);
+    if (advB) advB.addEventListener("input", updateAdvancedFieldHelp);
   });
 
   applyDistinctLocks();
-  updateAdvancedCounterpartyHelp();
+  updateAdvancedFieldHelp();
 }
 
 const ADVANCED_FIELD_KEYS = [

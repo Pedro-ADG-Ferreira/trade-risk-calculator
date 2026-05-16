@@ -70,75 +70,135 @@
                     </tr>
                     <tr>
                       <th scope="row">Montante (EUR)</th>
-                      <td><input id="advA_amount" type="number" min="1000" step="1000" value="100000" /></td>
-                      <td><input id="advB_amount" type="number" min="1000" step="1000" value="100000" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_amount" type="number" min="1000" step="1000" value="100000" />
+                        <small class="field-help" id="help-advA-amount"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_amount" type="number" min="1000" step="1000" value="100000" />
+                        <small class="field-help" id="help-advB-amount"></small>
+                      </td>
                       <td><input id="diff_amount" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Prazo (dias)</th>
-                      <td><input id="advA_tenorDays" type="number" min="1" max="720" step="1" value="120" /></td>
-                      <td><input id="advB_tenorDays" type="number" min="1" max="720" step="1" value="120" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_tenorDays" type="number" min="1" max="720" step="1" value="120" />
+                        <small class="field-help" id="help-advA-tenorDays"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_tenorDays" type="number" min="1" max="720" step="1" value="120" />
+                        <small class="field-help" id="help-advB-tenorDays"></small>
+                      </td>
                       <td><input id="diff_tenorDays" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Volatilidade moeda (%)</th>
-                      <td><input id="advA_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" /></td>
-                      <td><input id="advB_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" />
+                        <small class="field-help" id="help-advA-fxVolatility"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_fxVolatility" type="number" min="0" max="80" step="0.1" value="11" />
+                        <small class="field-help" id="help-advB-fxVolatility"></small>
+                      </td>
                       <td><input id="diff_fxVolatility" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Cobertura cambial (%)</th>
-                      <td><input id="advA_hedgeRatio" type="number" min="0" max="100" step="5" value="50" /></td>
-                      <td><input id="advB_hedgeRatio" type="number" min="0" max="100" step="5" value="50" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_hedgeRatio" type="number" min="0" max="100" step="5" value="50" />
+                        <small class="field-help" id="help-advA-hedgeRatio"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_hedgeRatio" type="number" min="0" max="100" step="5" value="50" />
+                        <small class="field-help" id="help-advB-hedgeRatio"></small>
+                      </td>
                       <td><input id="diff_hedgeRatio" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Instrumento</th>
-                      <td><select id="advA_instrument"></select></td>
-                      <td><select id="advB_instrument"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_instrument"></select>
+                        <small class="field-help" id="help-advA-instrument"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_instrument"></select>
+                        <small class="field-help" id="help-advB-instrument"></small>
+                      </td>
                       <td><input id="diff_instrument" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Estratégia cambial</th>
-                      <td><select id="advA_fxInstrument"></select></td>
-                      <td><select id="advB_fxInstrument"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_fxInstrument"></select>
+                        <small class="field-help" id="help-advA-fxInstrument"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_fxInstrument"></select>
+                        <small class="field-help" id="help-advB-fxInstrument"></small>
+                      </td>
                       <td><input id="diff_fxInstrument" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Incoterm</th>
-                      <td><select id="advA_incoterm"></select></td>
-                      <td><select id="advB_incoterm"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_incoterm"></select>
+                        <small class="field-help" id="help-advA-incoterm"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_incoterm"></select>
+                        <small class="field-help" id="help-advB-incoterm"></small>
+                      </td>
                       <td><input id="diff_incoterm" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Pagamento</th>
-                      <td><select id="advA_paymentStructure"></select></td>
-                      <td><select id="advB_paymentStructure"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_paymentStructure"></select>
+                        <small class="field-help" id="help-advA-paymentStructure"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_paymentStructure"></select>
+                        <small class="field-help" id="help-advB-paymentStructure"></small>
+                      </td>
                       <td><input id="diff_paymentStructure" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Qualidade documental</th>
-                      <td><select id="advA_documentationQuality"></select></td>
-                      <td><select id="advB_documentationQuality"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_documentationQuality"></select>
+                        <small class="field-help" id="help-advA-documentationQuality"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_documentationQuality"></select>
+                        <small class="field-help" id="help-advB-documentationQuality"></small>
+                      </td>
                       <td><input id="diff_documentationQuality" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Comissão instrumento (bps)</th>
-                      <td><input id="advA_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" /></td>
-                      <td><input id="advB_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" />
+                        <small class="field-help" id="help-advA-instrumentFeeBps"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_instrumentFeeBps" type="number" min="0" max="1000" step="1" value="40" />
+                        <small class="field-help" id="help-advB-instrumentFeeBps"></small>
+                      </td>
                       <td><input id="diff_instrumentFeeBps" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Comissão cambial (bps)</th>
-                      <td><input id="advA_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" /></td>
-                      <td><input id="advB_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" /></td>
+                      <td style="vertical-align: top;">
+                        <input id="advA_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" />
+                        <small class="field-help" id="help-advA-fxFeeBps"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <input id="advB_fxFeeBps" type="number" min="0" max="1000" step="1" value="20" />
+                        <small class="field-help" id="help-advB-fxFeeBps"></small>
+                      </td>
                       <td><input id="diff_fxFeeBps" class="diff-toggle" type="checkbox" /></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Qualidade contraparte</th>
-                      <td><select id="advA_counterpartyStrength"></select></td>
-                      <td><select id="advB_counterpartyStrength"></select></td>
-                      <td><input id="diff_counterpartyStrength" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                     <tr>
                       <th scope="row">Qualidade contraparte</th>
@@ -154,8 +214,14 @@
                     </tr>
                     <tr>
                       <th scope="row">Mitigação adicional</th>
-                      <td><select id="advA_collateral"></select></td>
-                      <td><select id="advB_collateral"></select></td>
+                      <td style="vertical-align: top;">
+                        <select id="advA_collateral"></select>
+                        <small class="field-help" id="help-advA-collateral"></small>
+                      </td>
+                      <td style="vertical-align: top;">
+                        <select id="advB_collateral"></select>
+                        <small class="field-help" id="help-advB-collateral"></small>
+                      </td>
                       <td><input id="diff_collateral" class="diff-toggle" type="checkbox" /></td>
                     </tr>
                   </tbody>
