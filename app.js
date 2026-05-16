@@ -65,32 +65,32 @@ function updateAdvancedFieldHelp() {
   // Incoterm
   const helpIncotermA = document.getElementById("help-advA-incoterm");
   const helpIncotermB = document.getElementById("help-advB-incoterm");
-  if (helpIncotermA) helpIncotermA.textContent = incotermHelp[output.advA_incoterm.value] || "Selecione um incoterm para ver a explicação.";
-  if (helpIncotermB) helpIncotermB.textContent = incotermHelp[output.advB_incoterm.value] || "Selecione um incoterm para ver a explicação.";
+  if (helpIncotermA) helpIncotermA.textContent = output.advA_incoterm.value ? (incotermHelp[output.advA_incoterm.value] || "Sem explicação para este incoterm.") : "Selecione um incoterm para ver a explicação.";
+  if (helpIncotermB) helpIncotermB.textContent = output.advB_incoterm.value ? (incotermHelp[output.advB_incoterm.value] || "Sem explicação para este incoterm.") : "Selecione um incoterm para ver a explicação.";
 
   // Pagamento
   const helpPaymentA = document.getElementById("help-advA-paymentStructure");
   const helpPaymentB = document.getElementById("help-advB-paymentStructure");
-  if (helpPaymentA) helpPaymentA.textContent = paymentHelp[output.advA_paymentStructure.value] || "Selecione uma estrutura de pagamento para ver a explicação.";
-  if (helpPaymentB) helpPaymentB.textContent = paymentHelp[output.advB_paymentStructure.value] || "Selecione uma estrutura de pagamento para ver a explicação.";
+  if (helpPaymentA) helpPaymentA.textContent = output.advA_paymentStructure.value ? (paymentHelp[output.advA_paymentStructure.value] || "Sem explicação para esta estrutura de pagamento.") : "Selecione uma estrutura de pagamento para ver a explicação.";
+  if (helpPaymentB) helpPaymentB.textContent = output.advB_paymentStructure.value ? (paymentHelp[output.advB_paymentStructure.value] || "Sem explicação para esta estrutura de pagamento.") : "Selecione uma estrutura de pagamento para ver a explicação.";
 
   // Documentação
   const helpDocA = document.getElementById("help-advA-documentationQuality");
   const helpDocB = document.getElementById("help-advB-documentationQuality");
-  if (helpDocA) helpDocA.textContent = documentationHelp[output.advA_documentationQuality.value] || "Selecione a qualidade documental para ver a explicação.";
-  if (helpDocB) helpDocB.textContent = documentationHelp[output.advB_documentationQuality.value] || "Selecione a qualidade documental para ver a explicação.";
+  if (helpDocA) helpDocA.textContent = output.advA_documentationQuality.value ? (documentationHelp[output.advA_documentationQuality.value] || "Sem explicação para esta qualidade documental.") : "Selecione a qualidade documental para ver a explicação.";
+  if (helpDocB) helpDocB.textContent = output.advB_documentationQuality.value ? (documentationHelp[output.advB_documentationQuality.value] || "Sem explicação para esta qualidade documental.") : "Selecione a qualidade documental para ver a explicação.";
 
   // Instrumento
   const helpInstrA = document.getElementById("help-advA-instrument");
   const helpInstrB = document.getElementById("help-advB-instrument");
-  if (helpInstrA) helpInstrA.textContent = instrumentHelp[output.advA_instrument.value] || "Selecione um instrumento para ver a explicação.";
-  if (helpInstrB) helpInstrB.textContent = instrumentHelp[output.advB_instrument.value] || "Selecione um instrumento para ver a explicação.";
+  if (helpInstrA) helpInstrA.textContent = output.advA_instrument.value ? (instrumentHelp[output.advA_instrument.value] || "Sem explicação para este instrumento.") : "Selecione um instrumento para ver a explicação.";
+  if (helpInstrB) helpInstrB.textContent = output.advB_instrument.value ? (instrumentHelp[output.advB_instrument.value] || "Sem explicação para este instrumento.") : "Selecione um instrumento para ver a explicação.";
 
   // Estratégia cambial
   const helpFxInstrA = document.getElementById("help-advA-fxInstrument");
   const helpFxInstrB = document.getElementById("help-advB-fxInstrument");
-  if (helpFxInstrA) helpFxInstrA.textContent = fxInstrumentHelp[output.advA_fxInstrument.value] || "Selecione uma estratégia cambial para ver a explicação.";
-  if (helpFxInstrB) helpFxInstrB.textContent = fxInstrumentHelp[output.advB_fxInstrument.value] || "Selecione uma estratégia cambial para ver a explicação.";
+  if (helpFxInstrA) helpFxInstrA.textContent = output.advA_fxInstrument.value ? (fxInstrumentHelp[output.advA_fxInstrument.value] || "Sem explicação para esta estratégia cambial.") : "Selecione uma estratégia cambial para ver a explicação.";
+  if (helpFxInstrB) helpFxInstrB.textContent = output.advB_fxInstrument.value ? (fxInstrumentHelp[output.advB_fxInstrument.value] || "Sem explicação para esta estratégia cambial.") : "Selecione uma estratégia cambial para ver a explicação.";
 
   // Comissão instrumento
   const feeA = Number(output.advA_instrumentFeeBps.value) || 0;
@@ -111,8 +111,8 @@ function updateAdvancedFieldHelp() {
   // Mitigação
   const helpCollA = document.getElementById("help-advA-collateral");
   const helpCollB = document.getElementById("help-advB-collateral");
-  if (helpCollA) helpCollA.textContent = collateralHelp[output.advA_collateral.value] || "Selecione uma mitigação para ver a explicação.";
-  if (helpCollB) helpCollB.textContent = collateralHelp[output.advB_collateral.value] || "Selecione uma mitigação para ver a explicação.";
+  if (helpCollA) helpCollA.textContent = output.advA_collateral.value ? (collateralHelp[output.advA_collateral.value] || "Sem explicação para esta mitigação.") : "Selecione uma mitigação para ver a explicação.";
+  if (helpCollB) helpCollB.textContent = output.advB_collateral.value ? (collateralHelp[output.advB_collateral.value] || "Sem explicação para esta mitigação.") : "Selecione uma mitigação para ver a explicação.";
   spreadExplanation: document.querySelector("#spreadExplanation"),
   costExplanation: document.querySelector("#costExplanation"),
   scoreBreakdown: document.querySelector("#scoreBreakdown"),
