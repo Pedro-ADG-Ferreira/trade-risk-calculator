@@ -357,6 +357,8 @@ function cloneOptions(sourceSelectId, targetSelectId) {
 }
 
 function initializeAdvancedSplitEditor() {
+
+  // Lista de todos os selects a sincronizar
   const selectIds = [
     "incoterm",
     "paymentStructure",
@@ -364,13 +366,17 @@ function initializeAdvancedSplitEditor() {
     "instrument",
     "fxInstrument",
     "counterpartyStrength",
-    "collateral",
+    "collateral"
   ];
 
+  // Sincroniza as opções do formulário principal para os selects A/B
   selectIds.forEach((id) => {
     cloneOptions(id, `advA_${id}`);
     cloneOptions(id, `advB_${id}`);
   });
+
+  // País é especial: preenchido por populateCountries()
+  // Se necessário, pode-se garantir que populateCountries é chamado antes
 
   output.advA_amount.value = form.amount.value;
   output.advA_tenorDays.value = form.tenorDays.value;
