@@ -27,9 +27,9 @@ body {
 }
 
 .layout {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1280px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 40px 0 56px;
+  padding: 32px 0 56px;
 }
 
 .card {
@@ -42,7 +42,7 @@ body {
 
 .hero {
   padding: 32px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -74,9 +74,9 @@ h3 {
 }
 
 h1 {
-  max-width: 11ch;
+  max-width: 16ch;
   font-size: clamp(2.6rem, 4vw, 4.6rem);
-  line-height: 0.96;
+  line-height: 1;
 }
 
 .hero-copy,
@@ -128,13 +128,19 @@ h1 {
 
 .grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
   gap: 24px;
+  align-items: start;
 }
 
 .form-panel,
 .output-panel {
-  padding: 28px;
+  padding: 30px;
+}
+
+.output-panel {
+  position: sticky;
+  top: 18px;
 }
 
 .section-title {
@@ -156,6 +162,7 @@ label {
   gap: 8px;
   font-size: 0.95rem;
   font-weight: 600;
+  color: var(--ink);
 }
 
 .field-help {
@@ -187,6 +194,13 @@ select {
   padding: 14px 16px;
   background: var(--panel-strong);
   color: var(--ink);
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: 2px solid rgba(12, 124, 89, 0.32);
+  outline-offset: 2px;
 }
 
 button {
@@ -260,7 +274,7 @@ button:hover {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fffaf0;
-  overflow-x: auto;
+  overflow: hidden;
 }
 
 .editor-caption {
@@ -286,11 +300,13 @@ button:hover {
 
 .compare-input-matrix {
   margin-top: 10px;
-  min-width: 760px;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
 .compare-table {
   width: 100%;
+  min-width: 930px;
   border-collapse: separate;
   border-spacing: 0 8px;
 }
@@ -303,6 +319,14 @@ button:hover {
   padding: 8px 10px;
 }
 
+.compare-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #efe7d8;
+  border-bottom: 1px solid var(--line);
+}
+
 .compare-table tbody th {
   width: 28%;
   color: var(--ink);
@@ -313,6 +337,11 @@ button:hover {
 
 .compare-table td {
   padding: 0 6px;
+}
+
+.compare-table tbody tr:nth-child(odd) th,
+.compare-table tbody tr:nth-child(odd) td {
+  background: rgba(12, 124, 89, 0.03);
 }
 
 .compare-table input,
@@ -412,6 +441,7 @@ button:hover {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
+  align-items: center;
 }
 
 .compare-row.header {
@@ -419,6 +449,10 @@ button:hover {
   background: rgba(12, 124, 89, 0.08);
   color: var(--ink);
   font-weight: 700;
+}
+
+.compare-row span:nth-child(n + 2) {
+  font-variant-numeric: tabular-nums;
 }
 
 .comparison-status {
@@ -439,6 +473,7 @@ button:hover {
   border-radius: 20px;
   background: #fffaf0;
   border: 1px solid var(--line);
+  min-height: 128px;
 }
 
 .metrics span,
@@ -511,11 +546,17 @@ button:hover {
   font-family: "Manrope", sans-serif;
   font-size: 0.9rem;
   line-height: 1.6;
+  max-height: 340px;
+  overflow: auto;
 }
 
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .output-panel {
+    position: static;
   }
 
   .metrics {
@@ -561,5 +602,13 @@ button:hover {
   h1 {
     max-width: none;
     font-size: 2.6rem;
+  }
+
+  .advanced-editor {
+    padding: 10px;
+  }
+
+  .compare-table {
+    min-width: 760px;
   }
 }
