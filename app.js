@@ -62,6 +62,36 @@ function updateAdvancedFieldHelp() {
   if (helpFxInstrA) helpFxInstrA.textContent = fxInstrumentHelp[output.advA_fxInstrument.value] || "";
   if (helpFxInstrB) helpFxInstrB.textContent = fxInstrumentHelp[output.advB_fxInstrument.value] || "";
 
+  // Incoterm
+  const helpIncotermA = document.getElementById("help-advA-incoterm");
+  const helpIncotermB = document.getElementById("help-advB-incoterm");
+  if (helpIncotermA) helpIncotermA.textContent = incotermHelp[output.advA_incoterm.value] || "Selecione um incoterm para ver a explicação.";
+  if (helpIncotermB) helpIncotermB.textContent = incotermHelp[output.advB_incoterm.value] || "Selecione um incoterm para ver a explicação.";
+
+  // Pagamento
+  const helpPaymentA = document.getElementById("help-advA-paymentStructure");
+  const helpPaymentB = document.getElementById("help-advB-paymentStructure");
+  if (helpPaymentA) helpPaymentA.textContent = paymentHelp[output.advA_paymentStructure.value] || "Selecione uma estrutura de pagamento para ver a explicação.";
+  if (helpPaymentB) helpPaymentB.textContent = paymentHelp[output.advB_paymentStructure.value] || "Selecione uma estrutura de pagamento para ver a explicação.";
+
+  // Documentação
+  const helpDocA = document.getElementById("help-advA-documentationQuality");
+  const helpDocB = document.getElementById("help-advB-documentationQuality");
+  if (helpDocA) helpDocA.textContent = documentationHelp[output.advA_documentationQuality.value] || "Selecione a qualidade documental para ver a explicação.";
+  if (helpDocB) helpDocB.textContent = documentationHelp[output.advB_documentationQuality.value] || "Selecione a qualidade documental para ver a explicação.";
+
+  // Instrumento
+  const helpInstrA = document.getElementById("help-advA-instrument");
+  const helpInstrB = document.getElementById("help-advB-instrument");
+  if (helpInstrA) helpInstrA.textContent = instrumentHelp[output.advA_instrument.value] || "Selecione um instrumento para ver a explicação.";
+  if (helpInstrB) helpInstrB.textContent = instrumentHelp[output.advB_instrument.value] || "Selecione um instrumento para ver a explicação.";
+
+  // Estratégia cambial
+  const helpFxInstrA = document.getElementById("help-advA-fxInstrument");
+  const helpFxInstrB = document.getElementById("help-advB-fxInstrument");
+  if (helpFxInstrA) helpFxInstrA.textContent = fxInstrumentHelp[output.advA_fxInstrument.value] || "Selecione uma estratégia cambial para ver a explicação.";
+  if (helpFxInstrB) helpFxInstrB.textContent = fxInstrumentHelp[output.advB_fxInstrument.value] || "Selecione uma estratégia cambial para ver a explicação.";
+
   // Comissão instrumento
   const feeA = Number(output.advA_instrumentFeeBps.value) || 0;
   const feeB = Number(output.advB_instrumentFeeBps.value) || 0;
@@ -78,41 +108,11 @@ function updateAdvancedFieldHelp() {
   if (helpFxFeeA) helpFxFeeA.textContent = fxFeeA > 0 ? `A comissão/taxa cambial contratada é de ${fxFeeA} bps e aumenta o custo total da cobertura ou conversão cambial.` : "Se não houver comissão cambial, não existe custo adicional dessa componente.";
   if (helpFxFeeB) helpFxFeeB.textContent = fxFeeB > 0 ? `A comissão/taxa cambial contratada é de ${fxFeeB} bps e aumenta o custo total da cobertura ou conversão cambial.` : "Se não houver comissão cambial, não existe custo adicional dessa componente.";
 
-
   // Mitigação
   const helpCollA = document.getElementById("help-advA-collateral");
   const helpCollB = document.getElementById("help-advB-collateral");
-  if (helpCollA) helpCollA.textContent = collateralHelp[output.advA_collateral.value] || "";
-  if (helpCollB) helpCollB.textContent = collateralHelp[output.advB_collateral.value] || "";
-}
-const form = document.querySelector("#calculator-form");
-const countrySelect = document.querySelector("#country");
-
-const fieldHelp = {
-  country: document.querySelector("#help-country"),
-  amount: document.querySelector("#help-amount"),
-  tenorDays: document.querySelector("#help-tenorDays"),
-  fxVolatility: document.querySelector("#help-fxVolatility"),
-  hedgeRatio: document.querySelector("#help-hedgeRatio"),
-  incoterm: document.querySelector("#help-incoterm"),
-  paymentStructure: document.querySelector("#help-paymentStructure"),
-  documentationQuality: document.querySelector("#help-documentationQuality"),
-  instrument: document.querySelector("#help-instrument"),
-  fxInstrument: document.querySelector("#help-fxInstrument"),
-  instrumentFeeBps: document.querySelector("#help-instrumentFeeBps"),
-  fxFeeBps: document.querySelector("#help-fxFeeBps"),
-  counterpartyStrength: document.querySelector("#help-counterpartyStrength"),
-  collateral: document.querySelector("#help-collateral"),
-};
-
-const output = {
-  riskScore: document.querySelector("#riskScore"),
-  riskLabel: document.querySelector("#riskLabel"),
-  annualSpread: document.querySelector("#annualSpread"),
-  spreadBps: document.querySelector("#spreadBps"),
-  estimatedCost: document.querySelector("#estimatedCost"),
-  costNote: document.querySelector("#costNote"),
-  scoreExplanation: document.querySelector("#scoreExplanation"),
+  if (helpCollA) helpCollA.textContent = collateralHelp[output.advA_collateral.value] || "Selecione uma mitigação para ver a explicação.";
+  if (helpCollB) helpCollB.textContent = collateralHelp[output.advB_collateral.value] || "Selecione uma mitigação para ver a explicação.";
   spreadExplanation: document.querySelector("#spreadExplanation"),
   costExplanation: document.querySelector("#costExplanation"),
   scoreBreakdown: document.querySelector("#scoreBreakdown"),
