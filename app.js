@@ -453,18 +453,9 @@ function copyAdvancedValues(fromPrefix, toPrefix, { includeCountry = true } = {}
 }
 
 function updateDistinctFieldState(key) {
-  const toggle = distinctToggles[key];
-  if (!toggle) {
-    return;
-  }
-
-  const isDistinct = toggle.checked;
-  output[`advB_${key}`].disabled = !isDistinct;
-  output[`advB_${key}`].classList.toggle("field-locked", !isDistinct);
-
-  if (!isDistinct) {
-    output[`advB_${key}`].value = output[`advA_${key}`].value;
-  }
+  // Todos os campos B ficam sempre editáveis
+  output[`advB_${key}`].disabled = false;
+  output[`advB_${key}`].classList.remove("field-locked");
 }
 
 function applyDistinctLocks() {
